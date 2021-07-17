@@ -10,6 +10,7 @@ confirmed = pd.melt(confirmed, id_vars=['Province/State', 'Country/Region', 'Lat
 deaths = pd.melt(deaths, id_vars=['Province/State', 'Country/Region', 'Lat', 'Long'], var_name='Date', value_name='Deaths')
 
 combined = confirmed.merge(deaths, on=['Province/State', 'Country/Region', 'Lat', 'Long', 'Date'], how='outer')
+combined = combined[['Country/Region', 'Date', 'Confimred', 'Deaths']]
 
 os.system('git pull')
 combined.to_csv('data.csv', index=False)
